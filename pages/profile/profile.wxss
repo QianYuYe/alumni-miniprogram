@@ -1,0 +1,271 @@
+.page-container {
+  min-height: 100vh;
+  padding-bottom: 30rpx;
+}
+
+/* 用户信息头部 */
+.profile-header {
+  position: relative;
+  padding-bottom: 20rpx;
+}
+
+.profile-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2, #9b6dff);
+}
+
+.profile-info {
+  position: relative;
+  padding: 80rpx 30rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  border: 6rpx solid white;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.15);
+}
+
+.profile-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24rpx;
+}
+
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.profile-name {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+}
+
+.verified-badge {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 8rpx;
+}
+
+.profile-login-tip {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-left: 12rpx;
+  padding: 4rpx 16rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.5);
+  border-radius: 20rpx;
+}
+
+.profile-realname {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 6rpx;
+  background: rgba(255,255,255,0.15);
+  padding: 4rpx 16rpx;
+  border-radius: 12rpx;
+}
+
+.profile-dept {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 4rpx;
+}
+
+.profile-location {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 6rpx;
+}
+
+.profile-bio {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10rpx;
+  text-align: center;
+  max-width: 500rpx;
+}
+
+/* 他人主页操作按钮 */
+.public-actions {
+  display: flex;
+  justify-content: center;
+  gap: 24rpx;
+  padding: 24rpx 20rpx;
+  margin: 20rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.msg-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 6rpx 20rpx rgba(102, 126, 234, 0.3);
+}
+
+.msg-btn:active {
+  transform: scale(0.96);
+}
+
+.follow-btn {
+  background: white;
+  color: #667eea;
+  border: 2rpx solid #667eea;
+  box-shadow: 0 4rpx 12rpx rgba(102, 126, 234, 0.1);
+}
+
+.follow-btn:active {
+  transform: scale(0.96);
+}
+
+.follow-btn.following {
+  background: #f5f3ff;
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8rpx;
+}
+
+.profile-tags .tag {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(10rpx);
+}
+
+/* 统计 */
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  margin-top: 24rpx;
+  padding: 20rpx 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 48rpx;
+}
+
+.stat-num {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4rpx;
+}
+
+/* 菜单 */
+.menu-section {
+  margin-top: 24rpx;
+}
+
+.menu-group {
+  background: white;
+  margin: 0 20rpx 24rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 30rpx;
+  border-bottom: 2rpx solid #f8f8f8;
+  transition: background 0.2s;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:active {
+  background: #f8f6ff;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+  width: 44rpx;
+  text-align: center;
+}
+
+.menu-label {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.menu-arrow {
+  font-size: 32rpx;
+  color: #ddd;
+}
+
+.logout-item {
+  justify-content: center;
+}
+
+.logout-label {
+  flex: none;
+  color: #e74c5e;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* 未登录提示 */
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100rpx 40rpx;
+}
+
+.prompt-text {
+  font-size: 28rpx;
+  color: #aaa;
+  margin-bottom: 30rpx;
+}
+
+.prompt-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 48rpx;
+  padding: 20rpx 80rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  border: none;
+  box-shadow: 0 4rpx 16rpx rgba(26, 115, 232, 0.3);
+}

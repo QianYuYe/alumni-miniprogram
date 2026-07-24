@@ -1,0 +1,18 @@
+<view class="alumni-card" bindtap="onTap">
+  <image class="alumni-avatar" src="{{alumni.avatar}}" mode="aspectFill" />
+  <view class="alumni-info">
+    <view class="alumni-name-row">
+      <text class="alumni-name">{{alumni.nickname || alumni.name}}</text>
+      <image class="verified-badge" wx:if="{{alumni.isVerified}}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a73e8'%3E%3Cpath d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z'/%3E%3C/svg%3E" mode="widthFix" />
+      <text class="alumni-year">{{alumni.enrollmentYear}}级</text>
+    </view>
+    <text class="alumni-dept">{{alumni.department}}</text>
+    <text class="alumni-location">📍 {{alumni.location}} · {{alumni.distance}}</text>
+    <view class="alumni-tags">
+      <text class="tag tag-blue" wx:for="{{alumni.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+  <view class="alumni-action" catchtap="onContact">
+    <button class="contact-btn">私信</button>
+  </view>
+</view>

@@ -1,0 +1,91 @@
+<view class="detail-container">
+  <!-- 加载中 -->
+  <view class="loading-container" wx:if="{{isLoading}}">
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+  </view>
+
+  <block wx:else>
+    <!-- 动态详情卡片 -->
+    <view class="detail-card">
+      <view class="card-header">
+        <view class="user-info" bindtap="goToUserProfile">
+          <image class="user-avatar" src="{{detail.userAvatar}}" mode="aspectFill" />
+          <view class="user-meta">
+            <view class="name-row">
+              <text class="user-name">{{detail.userName}}</text>
+              <image class="verified-badge" wx:if="{{detail.isVerified}}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a73e8'%3E%3Cpath d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z'/%3E%3C/svg%3E" mode="widthFix" />
+            </view>
+            <text class="post-time">{{formattedTime}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="card-body">
+        <text class="post-content">{{detail.content}}</text>
+
+        <view class="post-images" wx:if="{{detail.images && detail.images.length > 0}}">
+          <view class="image-grid">
+            <image wx:for="{{detail.images}}" wx:key="*this" src="{{item}}" mode="aspectFill" class="post-image" bindtap="previewImage" data-index="{{index}}" />
+          </view>
+        </view>
+
+        <view class="post-meta-info">
+          <text class="post-location" wx:if="{{detail.location}}">📍 {{detail.location}}</text>
+          <view class="post-tags" wx:if="{{detail.tags && detail.tags.length > 0}}">
+            <text class="tag tag-blue" wx:for="{{detail.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="card-stats">
+        <text class="stat-item">👁️ {{detail.views || 0}} 浏览</text>
+        <text class="stat-item">{{detail.likes}} 赞</text>
+        <text class="stat-item">{{detail.comments.length || detail.comments || 0}} 评论</text>
+        <text class="stat-item">{{detail.shares || 0}} 分享</text>
+      </view>
+    </view>
+
+    <!-- 评论列表 -->
+    <view class="comments-section">
+      <view class="comments-title">全部评论 ({{detail.comments.length || 0}})</view>
+
+      <block wx:if="{{detail.comments && detail.comments.length > 0}}">
+        <view class="comment-item" wx:for="{{detail.comments}}" wx:key="id">
+          <image class="comment-avatar" src="{{item.userAvatar}}" mode="aspectFill" />
+          <view class="comment-body">
+            <view class="comment-header">
+              <text class="comment-name">{{item.userName}}</text>
+              <text class="comment-time">{{item.formattedTime}}</text>
+            </view>
+            <text class="comment-content">{{item.content}}</text>
+            <view class="comment-actions">
+              <text class="comment-like">👍 {{item.likes || 0}}</text>
+              <text class="comment-reply">回复</text>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <view class="empty-comments" wx:else>
+        <text>暂无评论，来抢沙发吧～</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 底部评论输入 -->
+  <view class="comment-input-bar safe-area-bottom">
+    <view class="input-tools">
+      <text class="tool-btn" bindtap="chooseCommentImage">🖼️</text>
+      <text class="tool-btn" bindtap="toggleEmoji">😊</text>
+    </view>
+    <input class="comment-input" placeholder="说点什么..." value="{{commentText}}" bindinput="onCommentInput" />
+    <button class="send-btn" bindtap="sendComment" disabled="{{!canSend}}">发送</button>
+  </view>
+
+  <!-- 表情面板 -->
+  <view class="emoji-panel" wx:if="{{showEmoji}}">
+    <text class="emoji-item" wx:for="{{emojis}}" wx:key="*this" bindtap="selectEmoji" data-emoji="{{item}}">{{item}}</text>
+  </view>
+</view>

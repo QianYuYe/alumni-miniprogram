@@ -1,0 +1,73 @@
+<view class="detail-container">
+  <!-- 加载中 -->
+  <view class="loading-container" wx:if="{{isLoading}}">
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+  </view>
+
+  <block wx:else>
+    <!-- 活动封面 -->
+    <image class="detail-cover" src="{{detail.coverImage}}" mode="aspectFill" />
+
+    <!-- 活动信息 -->
+    <view class="detail-card">
+      <text class="detail-title">{{detail.title}}</text>
+
+      <view class="detail-meta">
+        <view class="meta-row">
+          <text class="meta-icon">📅</text>
+          <view class="meta-content">
+            <text class="meta-label">活动时间</text>
+            <text class="meta-value">{{detail.date}} {{detail.time}}</text>
+          </view>
+        </view>
+        <view class="meta-row">
+          <text class="meta-icon">📍</text>
+          <view class="meta-content">
+            <text class="meta-label">活动地点</text>
+            <text class="meta-value">{{detail.location}}</text>
+          </view>
+        </view>
+        <view class="meta-row">
+          <text class="meta-icon">👤</text>
+          <view class="meta-content">
+            <text class="meta-label">主办方</text>
+            <text class="meta-value">{{detail.organizer}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 活动描述 -->
+      <view class="detail-section">
+        <text class="section-title">活动详情</text>
+        <text class="section-content">{{detail.description}}</text>
+      </view>
+
+      <!-- 参与校友 -->
+      <view class="detail-section">
+        <text class="section-title">已报名校友 ({{detail.participants}}人)</text>
+        <view class="participants-grid">
+          <view class="participant-item" wx:for="{{detail.participants}}" wx:for-item="p" wx:key="id">
+            <image class="participant-avatar" src="{{p.avatar}}" mode="aspectFill" />
+            <text class="participant-name">{{p.name}}</text>
+          </view>
+          <view class="participant-item more-item" wx:if="{{detail.participants.length > 0}}">
+            <view class="more-circle">+{{detail.participants - (detail.participants.length || 0)}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 底部操作 -->
+  <view class="bottom-bar safe-area-bottom" wx:if="{{detail.status === 'upcoming'}}">
+    <view class="bottom-actions">
+      <view class="action-btn favorite-btn {{detail.isFavorited ? 'active' : ''}}" bindtap="toggleFavorite">
+        <text>{{detail.isFavorited ? '❤️' : '🤍'}}</text>
+        <text>{{detail.isFavorited ? '已收藏' : '收藏'}}</text>
+      </view>
+    </view>
+    <button class="join-btn" bindtap="joinEvent">立即报名</button>
+  </view>
+</view>

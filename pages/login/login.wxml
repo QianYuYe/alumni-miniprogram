@@ -1,0 +1,69 @@
+<view class="login-container">
+  <view class="login-header">
+    <view class="logo-area">
+      <view class="logo-icon">🎓</view>
+      <text class="app-name">校友圈</text>
+      <text class="app-desc">XX大学校友交流平台</text>
+    </view>
+  </view>
+
+  <!-- 微信快捷登录 -->
+  <view class="wechat-login" bindtap="wechatLogin">
+    <view class="wechat-login-content">
+      <image class="wechat-icon" src="https://picsum.photos/seed/wechat/200/200" mode="aspectFill" />
+      <view class="wechat-login-text">
+        <text class="wechat-login-title">微信用户一键登录</text>
+        <text class="wechat-login-desc">使用微信信息快速注册</text>
+      </view>
+    </view>
+    <text class="wechat-arrow">›</text>
+  </view>
+
+  <view class="divider-text">
+    <text class="divider-line"></text>
+    <text class="divider-label">或填写校友信息认证</text>
+    <text class="divider-line"></text>
+  </view>
+
+  <view class="login-form">
+    <view class="form-item">
+      <text class="form-label">学号</text>
+      <input class="input-field" type="text" placeholder="请输入学号" value="{{studentId}}" bindinput="onStudentIdInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">网名 <text class="form-hint">（对外展示）</text></text>
+      <input class="input-field" type="text" placeholder="取一个你的校友网名" value="{{nickname}}" bindinput="onNicknameInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">真实姓名 <text class="form-hint">（仅自己可见）</text></text>
+      <input class="input-field" type="text" placeholder="请输入真实姓名" value="{{realName}}" bindinput="onRealNameInput" />
+    </view>
+    <view class="form-row">
+      <view class="form-item form-item-half">
+        <text class="form-label">毕业年份</text>
+        <picker mode="selector" range="{{years}}" value="{{yearIndex}}" bindchange="onYearChange">
+          <view class="picker-field {{yearIndex === -1 ? 'placeholder' : ''}}">
+            {{yearIndex === -1 ? '选择' : years[yearIndex] + '届'}}
+          </view>
+        </picker>
+      </view>
+      <view class="form-item form-item-half">
+        <text class="form-label">学院</text>
+        <picker mode="selector" range="{{departments}}" value="{{deptIndex}}" bindchange="onDeptChange">
+          <view class="picker-field {{deptIndex === -1 ? 'placeholder' : ''}}">
+            {{deptIndex === -1 ? '选择' : departments[deptIndex]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <button class="login-btn" bindtap="onLogin" loading="{{isLoading}}" disabled="{{!canLogin}}">
+      {{isLoading ? '认证中...' : '立即注册/登录'}}
+    </button>
+
+    <view class="login-tips">
+      <text class="tip-text">首次登录将自动完成校友认证</text>
+      <text class="tip-text">您的信息仅用于校友身份验证</text>
+    </view>
+  </view>
+</view>

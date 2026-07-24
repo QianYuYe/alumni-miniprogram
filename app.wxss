@@ -1,0 +1,160 @@
+/* ===== 全局样式 - 年轻化设计 ===== */
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background-color: #f0f2f5;
+  color: #1a1a2e;
+  box-sizing: border-box;
+}
+
+/* 通用按钮样式 */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 48rpx;
+  padding: 16rpx 56rpx;
+  font-size: 28rpx;
+  border: none;
+  box-shadow: 0 8rpx 24rpx rgba(102, 126, 234, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:active {
+  opacity: 0.9;
+  transform: scale(0.96);
+}
+
+.btn-secondary {
+  background: white;
+  color: #667eea;
+  border: 2rpx solid #667eea;
+  border-radius: 48rpx;
+  padding: 14rpx 48rpx;
+  font-size: 28rpx;
+}
+
+.btn-secondary:active {
+  background: #f5f3ff;
+}
+
+/* 通用卡片样式 */
+.card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 分割线 */
+.divider {
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, #e8e8e8, transparent);
+  margin: 24rpx 0;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 0;
+  color: #bbb;
+}
+
+.empty-state text {
+  font-size: 28rpx;
+  margin-top: 16rpx;
+}
+
+/* 加载动画 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60rpx 0;
+}
+
+.loading-dot {
+  width: 14rpx;
+  height: 14rpx;
+  margin: 0 6rpx;
+  background: #667eea;
+  border-radius: 50%;
+  animation: loading-bounce 1.4s ease-in-out infinite;
+}
+
+.loading-dot:nth-child(1) { animation-delay: 0s; }
+.loading-dot:nth-child(2) { animation-delay: 0.16s; }
+.loading-dot:nth-child(3) { animation-delay: 0.32s; }
+
+@keyframes loading-bounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  40% {
+    transform: translateY(-16rpx);
+    opacity: 1;
+  }
+}
+
+/* 输入框样式 */
+.input-field {
+  background: #f5f6fa;
+  border-radius: 16rpx;
+  padding: 24rpx 30rpx;
+  font-size: 28rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 6rpx rgba(102, 126, 234, 0.1);
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-block;
+  padding: 6rpx 18rpx;
+  border-radius: 10rpx;
+  font-size: 22rpx;
+  margin: 4rpx;
+  font-weight: 500;
+}
+
+.tag-blue {
+  background: linear-gradient(135deg, #e8f0fe, #dce8fb);
+  color: #5b7cdb;
+}
+
+.tag-green {
+  background: linear-gradient(135deg, #e6f7e6, #d4f0d4);
+  color: #34a853;
+}
+
+.tag-orange {
+  background: linear-gradient(135deg, #fef3e0, #fde8c8);
+  color: #f9ab00;
+}
+
+.tag-red {
+  background: linear-gradient(135deg, #fce8e6, #fad4d0);
+  color: #ea4335;
+}
+
+/* 页面标题 */
+.page-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1a1a2e;
+  padding: 30rpx 30rpx 20rpx;
+}
+
+/* 安全区域适配 */
+.safe-area-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}

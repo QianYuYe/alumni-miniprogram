@@ -1,0 +1,73 @@
+<view class="post-card" bindtap="onTapCard">
+  <!-- 用户信息 -->
+  <view class="card-header">
+    <view class="user-info">
+      <image class="user-avatar" src="{{moment.userAvatar}}" mode="aspectFill" />
+      <view class="user-meta">
+        <view class="name-row">
+          <text class="user-name">{{moment.userName}}</text>
+          <image class="verified-badge" wx:if="{{moment.isVerified}}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a73e8'%3E%3Cpath d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z'/%3E%3C/svg%3E" mode="widthFix" />
+        </view>
+        <text class="post-time">{{formattedTime}}</text>
+      </view>
+    </view>
+    <view class="tag-list" wx:if="{{moment.userTags && moment.userTags.length > 0}}">
+      <text class="tag tag-blue" wx:for="{{moment.userTags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 内容 -->
+  <view class="card-body">
+    <text class="post-content">{{moment.content}}</text>
+
+    <!-- 图片 -->
+    <view class="post-images" wx:if="{{moment.images && moment.images.length > 0}}">
+      <view class="image-grid grid-{{imageGridClass}}" wx:if="{{moment.images.length > 0}}">
+        <image 
+          wx:for="{{moment.images}}" 
+          wx:key="*this" 
+          src="{{item}}" 
+          mode="aspectFill" 
+          class="post-image"
+          bindtap="previewImage"
+          data-index="{{index}}"
+        />
+      </view>
+    </view>
+
+    <!-- 位置和标签 -->
+    <view class="post-meta">
+      <text class="post-location" wx:if="{{moment.location}}">📍 {{moment.location}}</text>
+      <view class="post-meta-bottom">
+        <view class="post-tags" wx:if="{{moment.tags && moment.tags.length > 0}}">
+          <text class="tag tag-blue" wx:for="{{moment.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+        </view>
+        <text class="post-views">👁️ {{moment.views || 0}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作栏 -->
+  <view class="card-actions">
+    <view class="action-item" catchtap="onLike" data-id="{{moment.id}}">
+      <view class="action-icon-wrap {{moment.isLiked ? 'liked' : ''}}">
+        <text class="action-icon">{{moment.isLiked ? '❤️' : '🤍'}}</text>
+      </view>
+      <text class="action-count {{moment.isLiked ? 'liked' : ''}}">{{moment.likes || 0}}</text>
+    </view>
+    <view class="action-item" catchtap="onComment" data-id="{{moment.id}}">
+      <view class="action-icon-wrap">
+        <text class="action-icon">💬</text>
+      </view>
+      <text class="action-count">{{moment.comments || 0}}</text>
+    </view>
+    <view class="action-item">
+      <button class="share-btn" open-type="share" plain data-momentid="{{moment.id}}" data-momentcontent="{{moment.content}}">
+        <view class="action-icon-wrap">
+          <text class="action-icon">↗️</text>
+        </view>
+        <text class="action-count">{{moment.shares || 0}}</text>
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,144 @@
+.page-container {
+  min-height: 100vh;
+  padding-bottom: 20rpx;
+}
+
+/* 搜索栏 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: white;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #f5f6fa;
+  border-radius: 36rpx;
+  padding: 0 24rpx;
+  height: 72rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 26rpx;
+  height: 100%;
+}
+
+.search-clear {
+  font-size: 28rpx;
+  color: #999;
+  padding: 8rpx;
+}
+
+.search-btn {
+  color: #667eea;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  background: white;
+  padding: 0 20rpx 20rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  margin-right: 24rpx;
+  padding: 8rpx 20rpx;
+  background: #f5f6fa;
+  border-radius: 20rpx;
+}
+
+.filter-label {
+  font-size: 24rpx;
+  color: #666;
+  max-width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.filter-arrow {
+  font-size: 20rpx;
+  color: #999;
+  margin-left: 8rpx;
+}
+
+/* 统计 */
+.alumni-stats {
+  padding: 16rpx 30rpx;
+}
+
+.stats-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 校友列表 */
+.alumni-list {
+  padding: 0 20rpx;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.load-more .loading-dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin: 0 6rpx;
+  background: #667eea;
+  border-radius: 50%;
+  animation: loading-bounce 1.4s ease-in-out infinite;
+}
+
+.load-more .loading-dot:nth-child(1) { animation-delay: 0s; }
+.load-more .loading-dot:nth-child(2) { animation-delay: 0.16s; }
+.load-more .loading-dot:nth-child(3) { animation-delay: 0.32s; }
+
+.no-more {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #ccc;
+  font-size: 24rpx;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.empty-subtext {
+  font-size: 26rpx;
+  color: #ccc;
+}

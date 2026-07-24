@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/moments/moments",
+    "pages/alumni/alumni",
+    "pages/event/event",
+    "pages/event-detail/event-detail",
+    "pages/message/message",
+    "pages/profile/profile",
+    "pages/post-detail/post-detail",
+    "pages/chat/chat"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "校友圈",
+    "navigationBarBackgroundColor": "#667eea",
+    "backgroundColor": "#f0f2f5"
+  },
+  "tabBar": {
+    "color": "#b0b0b0",
+    "selectedColor": "#667eea",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icon-home.png",
+        "selectedIconPath": "images/icon-home-active.png"
+      },
+      {
+        "pagePath": "pages/alumni/alumni",
+        "text": "校友录",
+        "iconPath": "images/icon-alumni.png",
+        "selectedIconPath": "images/icon-alumni-active.png"
+      },
+      {
+        "pagePath": "pages/event/event",
+        "text": "活动",
+        "iconPath": "images/icon-event.png",
+        "selectedIconPath": "images/icon-event-active.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "images/icon-message.png",
+        "selectedIconPath": "images/icon-message-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/icon-profile.png",
+        "selectedIconPath": "images/icon-profile-active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于查找附近的校友活动"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,28 @@
+# 依赖
+node_modules/
+
+# 运行缓存
+*.log
+.env
+
+# 微信开发者工具项目配置（私人）
+project.private.config.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 数据库文件
+*.db
+*.db-wal
+*.db-shm
+
+# 上传目录
+server/uploads/
+server/data/
+
+# OS
+.DS_Store
+Thumbs.db

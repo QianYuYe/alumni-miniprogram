@@ -1,0 +1,23 @@
+<view class="event-card" bindtap="onTap">
+  <image class="event-cover" src="{{event.coverImage}}" mode="aspectFill" />
+  <view class="event-info">
+    <text class="event-title">{{event.title}}</text>
+    <view class="event-meta-row">
+      <text class="meta-icon">📅</text>
+      <text class="meta-text">{{event.date}} {{event.time}}</text>
+    </view>
+    <view class="event-meta-row">
+      <text class="meta-icon">📍</text>
+      <text class="meta-text">{{event.location}}</text>
+    </view>
+    <view class="event-bottom">
+      <view class="event-tags">
+        <text class="tag tag-blue" wx:for="{{event.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+      </view>
+      <text class="event-status {{event.status}}">{{event.status === 'upcoming' ? '报名中' : '已结束'}}</text>
+    </view>
+    <view class="event-participants">
+      <text>{{event.participants}}/{{event.maxParticipants}}人报名</text>
+    </view>
+  </view>
+</view>

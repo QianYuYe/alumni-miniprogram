@@ -1,0 +1,28 @@
+<view class="chat-container">
+  <!-- 消息列表 -->
+  <scroll-view class="message-list" scroll-y scroll-with-animation scroll-into-view="msg_{{messages.length - 1}}">
+    <view class="message-item {{msg.isSelf ? 'self' : 'other'}}" wx:for="{{messages}}" wx:key="id" id="msg_{{index}}">
+      <view class="message-bubble">
+        <text class="message-text">{{msg.content}}</text>
+        <text class="message-time">{{formatChatTime(msg.time)}}</text>
+      </view>
+    </view>
+
+    <view class="empty-chat" wx:if="{{messages.length === 0}}">
+      <text class="empty-text">开始对话吧～</text>
+    </view>
+  </scroll-view>
+
+  <!-- 底部输入 -->
+  <view class="chat-input-bar safe-area-bottom">
+    <text class="tool-btn" bindtap="chooseChatImage">🖼️</text>
+    <text class="tool-btn" bindtap="toggleEmoji">😊</text>
+    <input class="chat-input" placeholder="输入消息..." value="{{inputText}}" bindinput="onInput" />
+    <button class="send-btn" bindtap="sendMessage" disabled="{{!canSend}}">发送</button>
+  </view>
+
+  <!-- 表情面板 -->
+  <view class="emoji-panel" wx:if="{{showEmoji}}">
+    <text class="emoji-item" wx:for="{{emojis}}" wx:key="*this" bindtap="selectEmoji" data-emoji="{{item}}">{{item}}</text>
+  </view>
+</view>

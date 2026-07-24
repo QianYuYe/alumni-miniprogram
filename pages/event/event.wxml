@@ -1,0 +1,47 @@
+<view class="page-container">
+  <!-- 活动分类切换 -->
+  <view class="event-tabs">
+    <view class="tab-item {{currentTab === 'upcoming' ? 'active' : ''}}" bindtap="switchTab" data-tab="upcoming">
+      <text>即将开始</text>
+    </view>
+    <view class="tab-item {{currentTab === 'ended' ? 'active' : ''}}" bindtap="switchTab" data-tab="ended">
+      <text>已结束</text>
+    </view>
+  </view>
+
+  <!-- 活动列表 -->
+  <view class="event-list">
+    <block wx:for="{{events}}" wx:key="id">
+      <view class="event-card" bindtap="goToDetail" data-id="{{item.id}}">
+        <image class="event-cover" src="{{item.coverImage}}" mode="aspectFill" />
+        <view class="event-info">
+          <text class="event-title">{{item.title}}</text>
+          <view class="event-meta">
+            <text class="meta-item">📅 {{item.date}} {{item.time}}</text>
+            <text class="meta-item">📍 {{item.location}}</text>
+          </view>
+          <view class="event-status-row">
+            <view class="event-tags">
+              <text class="tag tag-blue" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+            </view>
+            <text class="event-status status-{{item.status}}">
+              {{item.status === 'upcoming' ? '报名中' : '已结束'}}
+            </text>
+          </view>
+          <view class="event-participants">
+            <view class="participant-avatars">
+              <image class="participant-avatar" wx:for="{{item.participantList || []}}" wx:key="*this" src="{{item}}" mode="aspectFill" />
+            </view>
+            <text class="participant-count">{{item.participants}}/{{item.maxParticipants}}人报名</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class="empty-state" wx:if="{{events.length === 0}}">
+      <text class="empty-icon">📅</text>
+      <text class="empty-text">暂无{{currentTab === 'upcoming' ? '即将开始的' : '已结束的'}}活动</text>
+      <text class="empty-subtext">敬请期待更多校友活动</text>
+    </view>
+  </view>
+</view>

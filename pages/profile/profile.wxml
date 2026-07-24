@@ -1,0 +1,97 @@
+<view class="page-container">
+  <!-- 用户信息头部 -->
+  <view class="profile-header">
+    <view class="profile-bg"></view>
+    <view class="profile-info">
+      <image class="profile-avatar" src="{{userInfo.avatar || defaultAvatar}}" mode="aspectFill" />
+      <view class="profile-detail">
+        <view class="profile-name-row">
+          <text class="profile-name">{{userInfo.nickname || userInfo.name || '未登录'}}</text>
+          <image class="verified-badge" wx:if="{{userInfo.isVerified}}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a73e8'%3E%3Cpath d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z'/%3E%3C/svg%3E" mode="widthFix" />
+          <text class="profile-login-tip" wx:if="{{!isLogin}}" bindtap="goToLogin">点击登录 ></text>
+        </view>
+        <!-- 自己可见：真实姓名 -->
+        <text class="profile-realname" wx:if="{{isSelf && userInfo.realName}}">真实姓名：{{userInfo.realName}}</text>
+        <text class="profile-dept" wx:if="{{userInfo.department}}">{{userInfo.department}} · {{userInfo.enrollmentYear}}级</text>
+        <!-- 自己可见：更多信息 -->
+        <block wx:if="{{isSelf}}">
+          <text class="profile-location" wx:if="{{userInfo.location}}">📍 {{userInfo.location}}</text>
+          <text class="profile-bio" wx:if="{{userInfo.bio}}">{{userInfo.bio}}</text>
+          <view class="profile-tags" wx:if="{{userInfo.tags && userInfo.tags.length > 0}}">
+            <text class="tag tag-blue" wx:for="{{userInfo.tags}}" wx:key="*this">{{item}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 统计 -->
+    <view class="profile-stats" wx:if="{{isLogin}}">
+      <view class="stat-item">
+        <text class="stat-num">{{userInfo.moments || 0}}</text>
+        <text class="stat-label">动态</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{userInfo.followers || 0}}</text>
+        <text class="stat-label">粉丝</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{userInfo.following || 0}}</text>
+        <text class="stat-label">关注</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===== 他人主页：操作按钮 ===== -->
+  <view class="public-actions" wx:if="{{!isSelf && isLogin}}">
+    <button class="action-btn msg-btn" bindtap="sendPrivateMessage">💬 私信</button>
+    <button class="action-btn follow-btn {{isFollowing ? 'following' : ''}}" bindtap="toggleFollow">
+      {{isFollowing ? '✅ 已关注' : '➕ 关注'}}
+    </button>
+  </view>
+
+  <!-- ===== 自己主页：功能菜单 ===== -->
+  <view class="menu-section" wx:if="{{isSelf && isLogin}}">
+    <view class="menu-group">
+      <view class="menu-item" bindtap="gotoMyMoments">
+        <text class="menu-icon">📝</text>
+        <text class="menu-label">我的动态</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="gotoFavorites">
+        <text class="menu-icon">❤️</text>
+        <text class="menu-label">我的收藏</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="gotoEvents">
+        <text class="menu-icon">📅</text>
+        <text class="menu-label">我的活动</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+
+    <view class="menu-group">
+      <view class="menu-item" bindtap="editProfile">
+        <text class="menu-icon">✏️</text>
+        <text class="menu-label">编辑资料</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="gotoAbout">
+        <text class="menu-icon">ℹ️</text>
+        <text class="menu-label">关于校友圈</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 退出登录 -->
+    <view class="menu-group">
+      <view class="menu-item logout-item" bindtap="onLogout">
+        <text class="menu-label logout-label">退出登录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 未登录状态 -->
+  <view class="login-prompt" wx:if="{{!isLogin}}">
+    <text class="prompt-text">登录后可以发布动态、参与活动</text>
+    <button class="prompt-btn" bindtap="goToLogin">立即登录</button>
+  </view>
+</view>

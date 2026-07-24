@@ -1,0 +1,300 @@
+.detail-container {
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+  background: #f0f2f5;
+}
+
+/* 动态详情卡片 */
+.detail-card {
+  background: white;
+  margin: 20rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  padding: 28rpx 28rpx 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  border: 2rpx solid #f0f0f0;
+}
+
+.user-meta {
+  margin-left: 16rpx;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.verified-badge {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 6rpx;
+}
+
+.post-time {
+  font-size: 22rpx;
+  color: #bbb;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.card-body {
+  padding: 20rpx 28rpx;
+}
+
+.post-content {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.8;
+}
+
+.post-images {
+  margin-top: 20rpx;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rpx;
+}
+
+.image-grid .post-image:first-child:last-child {
+  grid-column: 1 / -1;
+  max-height: 400rpx;
+}
+
+.post-image {
+  width: 100%;
+  height: 240rpx;
+  background: #f5f5f5;
+  border-radius: 8rpx;
+}
+
+.post-meta-info {
+  margin-top: 20rpx;
+}
+
+.post-location {
+  font-size: 24rpx;
+  color: #aaa;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6rpx;
+}
+
+.card-stats {
+  display: flex;
+  padding: 20rpx 28rpx;
+  border-top: 2rpx solid #f5f5f5;
+  margin-top: 16rpx;
+}
+
+.stat-item {
+  font-size: 24rpx;
+  color: #bbb;
+  margin-right: 36rpx;
+}
+
+/* 评论区域 */
+.comments-section {
+  background: white;
+  margin: 0 20rpx;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.comments-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 24rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.comment-item {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f8f8f8;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-avatar {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 16rpx;
+  border: 2rpx solid #f0f0f0;
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.comment-name {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.comment-time {
+  font-size: 20rpx;
+  color: #ccc;
+  margin-left: 16rpx;
+}
+
+.comment-content {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+.comment-actions {
+  display: flex;
+  margin-top: 12rpx;
+}
+
+.comment-like, .comment-reply {
+  font-size: 22rpx;
+  color: #bbb;
+  margin-right: 24rpx;
+}
+
+.empty-comments {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #ddd;
+  font-size: 26rpx;
+}
+
+/* 底部评论输入 */
+.comment-input-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 12rpx 20rpx;
+  padding-bottom: calc(12rpx + constant(safe-area-inset-bottom));
+  padding-bottom: calc(12rpx + env(safe-area-inset-bottom));
+  border-top: 2rpx solid #eee;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.06);
+  z-index: 100;
+}
+
+.input-tools {
+  display: flex;
+  align-items: center;
+  margin-right: 12rpx;
+}
+
+.tool-btn {
+  font-size: 36rpx;
+  margin-right: 8rpx;
+  padding: 4rpx;
+}
+
+.tool-btn:active {
+  opacity: 0.6;
+}
+
+.comment-input {
+  flex: 1;
+  height: 64rpx;
+  background: #f5f6fa;
+  border-radius: 32rpx;
+  padding: 0 24rpx;
+  font-size: 26rpx;
+}
+
+.send-btn {
+  margin-left: 12rpx;
+  padding: 0 28rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  border: none;
+  flex-shrink: 0;
+  box-shadow: 0 4rpx 12rpx rgba(102, 126, 234, 0.3);
+}
+
+.send-btn[disabled] {
+  opacity: 0.3;
+  box-shadow: none;
+}
+
+/* 表情面板 */
+.emoji-panel {
+  position: fixed;
+  bottom: 100rpx;
+  left: 0;
+  right: 0;
+  background: #f8f9fc;
+  border-top: 2rpx solid #eee;
+  padding: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  z-index: 99;
+  max-height: 300rpx;
+  overflow-y: scroll;
+}
+
+.emoji-item {
+  font-size: 44rpx;
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emoji-item:active {
+  background: #e8e8e8;
+  border-radius: 12rpx;
+}
+
+.send-btn[disabled] {
+  opacity: 0.5;
+}

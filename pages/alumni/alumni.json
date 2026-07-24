@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "校友录",
+  "usingComponents": {
+    "alumni-card": "/components/alumni-card/alumni-card"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "校友圈",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f5f6fa",
+  "usingComponents": {
+    "post-card": "/components/post-card/post-card"
+  }
+}

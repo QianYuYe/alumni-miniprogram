@@ -1,0 +1,47 @@
+<view class="page-container">
+  <!-- 消息分类 -->
+  <view class="msg-tabs">
+    <view class="tab-item {{currentTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-tab="all">
+      <text>全部</text>
+      <view class="badge" wx:if="{{unreadCount > 0}}">{{unreadCount > 99 ? '99+' : unreadCount}}</view>
+    </view>
+    <view class="tab-item {{currentTab === 'chat' ? 'active' : ''}}" bindtap="switchTab" data-tab="chat">
+      <text>私信</text>
+    </view>
+    <view class="tab-item {{currentTab === 'comment' ? 'active' : ''}}" bindtap="switchTab" data-tab="comment">
+      <text>评论</text>
+    </view>
+    <view class="tab-item {{currentTab === 'like' ? 'active' : ''}}" bindtap="switchTab" data-tab="like">
+      <text>赞</text>
+    </view>
+    <view class="tab-item {{currentTab === 'system' ? 'active' : ''}}" bindtap="switchTab" data-tab="system">
+      <text>系统通知</text>
+    </view>
+  </view>
+
+  <!-- 消息列表 -->
+  <view class="msg-list">
+    <block wx:for="{{messages}}" wx:key="id">
+      <view class="msg-item {{!item.isRead ? 'unread' : ''}}" bindtap="onMsgTap" data-id="{{item.id}}">
+        <view class="msg-avatar-wrapper">
+          <image wx:if="{{item.userAvatar}}" class="msg-avatar" src="{{item.userAvatar}}" mode="aspectFill" />
+          <view wx:else class="msg-avatar system-avatar">📢</view>
+          <view class="unread-dot" wx:if="{{!item.isRead}}"></view>
+        </view>
+        <view class="msg-body">
+          <view class="msg-header">
+            <text class="msg-name">{{item.userName}}</text>
+            <text class="msg-time">{{formattedTime(item.createTime)}}</text>
+          </view>
+          <text class="msg-content">{{item.content}}</text>
+        </view>
+      </view>
+    </block>
+
+    <view class="empty-state" wx:if="{{messages.length === 0}}">
+      <text class="empty-icon">🔔</text>
+      <text class="empty-text">暂无消息</text>
+      <text class="empty-subtext">当有人与你互动时，消息会显示在这里</text>
+    </view>
+  </view>
+</view>

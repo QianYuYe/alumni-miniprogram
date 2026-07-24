@@ -1,0 +1,60 @@
+<view class="publish-container" wx:if="{{action === 'publish'}}">
+  <!-- 发布动态 -->
+  <view class="publish-header">
+    <image class="user-avatar" src="{{userInfo.avatar || 'https://picsum.photos/seed/default/200/200'}}" mode="aspectFill" />
+    <text class="user-name">{{userInfo.name || '校友'}}</text>
+  </view>
+
+  <view class="content-area">
+    <textarea class="content-input" placeholder="分享你的校友生活..." value="{{content}}" bindinput="onContentInput" maxlength="2000" auto-focus />
+    <text class="char-count">{{content.length}}/2000</text>
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="image-section">
+    <view class="section-label">添加图片</view>
+    <view class="image-upload-grid">
+      <view class="uploaded-image" wx:for="{{images}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill" />
+        <view class="image-remove" bindtap="removeImage" data-index="{{index}}">✕</view>
+      </view>
+      <view class="upload-btn" wx:if="{{images.length < 9}}" bindtap="chooseImage">
+        <text class="upload-icon">+</text>
+        <text class="upload-text">{{images.length}}/9</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 位置 -->
+  <view class="location-section">
+    <view class="section-label">所在位置</view>
+    <view class="location-input" bindtap="chooseLocation">
+      <text class="location-icon">📍</text>
+      <text class="location-text">{{location || '添加位置'}}</text>
+      <text class="location-clear" wx:if="{{location}}" bindtap="clearLocation">✕</text>
+    </view>
+  </view>
+
+  <!-- 标签 -->
+  <view class="tags-section">
+    <view class="section-label">添加标签</view>
+    <view class="tags-list">
+      <view 
+        class="tag-item {{selectedTags.includes(tag) ? 'active' : ''}}" 
+        wx:for="{{availableTags}}" 
+        wx:key="*this"
+        bindtap="toggleTag"
+        data-tag="{{item}}"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="publish-bottom">
+    <button class="publish-btn" bindtap="onPublish" disabled="{{!canPublish}}">
+      发布动态
+    </button>
+  </view>
+</view>

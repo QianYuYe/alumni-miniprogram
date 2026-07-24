@@ -1,0 +1,61 @@
+# =============================================
+# GitHub Actions - 自动部署后端到阿里云 ECS
+# 每次推送 server/ 目录的变更时自动部署
+# =============================================
+
+name: 部署后端到阿里云
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'server/**'
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+
+      - name: 打包后端
+        run: |
+          cd server
+          tar -czf /tmp/alumni-server.tar.gz \
+            --exclude=node_modules \
+            --exclude=data \
+            --exclude=.git \
+            ./
+
+      - name: 上传并部署到阿里云 ECS
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          key: ${{ secrets.ALIYUN_SSH_KEY }}
+          port: ${{ secrets.ALIYUN_PORT || 22 }}
+          source: "/tmp/alumni-server.tar.gz"
+          target: "/tmp/"
+          strip_components: 0
+
+      - name: 在服务器上安装并启动
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          key: ${{ secrets.ALIYUN_SSH_KEY }}
+          port: ${{ secrets.ALIYUN_PORT || 22 }}
+          script: |
+            set -e
+            mkdir -p /opt/alumni-server
+            rm -rf /opt/alumni-server/*
+            tar -xzf /tmp/alumni-server.tar.gz -C /opt/alumni-server
+            cd /opt/alumni-server
+            npm install --production
+            node init-db.js
+            command -v pm2 &> /dev/null || npm install -g pm2
+            pm2 delete alumni-server 2>/dev/null || true
+            pm2 start app.js --name alumni-server
+            pm2 save
+            echo "部署完成 ✅"
